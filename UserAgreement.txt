@@ -1,0 +1,27 @@
+**User Agreement**
+
+BEAR Software Group will not share any data provided by the client to any
+third party. User data will only be used for analysis and improvement of 
+BEAR Software Group's products.
+
+BEAR Software Group does not permit the sale or reproduction of any 
+applications.
+
+BEAR Software group does not permit the use of any applications by anyone
+other than the registered user. 
+
+The user may not sell or distribute data without the express written consent 
+of BEAR Software Group
+
+Bear Software Group will not be held legally or otherwise responsible or
+liable for any data breaches, zero-day attacks, database worms, or any 
+other malicious attack that compromises the users data security.
+
+BEAR Software Group takes great care in insuring user's data security.
+BEAR Software Group performs regular vulnerability assessments, and requires
+the same from all key vendors and contibutors. 
+
+BEAR Software Group is constantly changing its approach to security as the
+security landscape is rapidly evolving. Every effort is made to stay on the
+cutting edge of data security. 
+
