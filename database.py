@@ -109,6 +109,7 @@ class Database: #This is the applications main class. Everything is contained he
         if !m:
                 print("invalid skill entered")
                 return False
+        return True
                                                             
     def search_Entry(self,key,value): #This will be the tag to search by. #Selected using buttons? #Passed in as string.
         
