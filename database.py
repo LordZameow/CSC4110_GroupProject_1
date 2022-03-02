@@ -56,14 +56,16 @@ class Database: #This is the applications main class. Everything is contained he
         self.storage = []
 
 
-    def add_EntryBlank(self):
-        
-        #Pass in entries from tkinter text boxes
-       print("Hello")
-    def add_EntryFilled(self):
-        #put filter entry function here?
-        #use tkinter
-        print("Hello")
+   
+    def add_EntryFilled(self,name, position, SSN, Address, email, phone, skill):
+        newEntry = Entry(name, position, SSN, Address, email, phone, skill)
+
+        if self.filter_Entry(newEntry) == True:
+            self.storage.append(newEntry)
+            #print("Entry added.")
+            
+        else:
+            print("Entry contains unacceptable character, not added.")
         
     def filter_Entry(self): #function to check that the database entry received from the tkinter UI is valid before pickling
         p = re.compile('[a-zA-Z]+ [a-zA-Z]+')  #regex to check that name only consists of one space and alphabetical characters
@@ -109,7 +111,7 @@ class Database: #This is the applications main class. Everything is contained he
         if !m:
                 print("invalid skill entered")
                 return False
-        return True
+        return True  #if all cases pass
                                                             
     def search_Entry(self,key,value): #This will be the tag to search by. #Selected using buttons? #Passed in as string.
         
@@ -121,7 +123,7 @@ class Database: #This is the applications main class. Everything is contained he
 
     def import_Txt(self):
         
-        data = open("employeeInfo.txt",'r') 
+        data = open("employeeInfov2.txt",'r') 
 
         for line in data:
             dataList = line.split(",")
@@ -129,12 +131,11 @@ class Database: #This is the applications main class. Everything is contained he
             for i in range(len(dataList)): #remove any leading/trailing whitespace
                 dataList[i] = dataList[i].strip()
 
-            self.storage.append(Entry(dataList[0],dataList[1],dataList[2], dataList[3], dataList[4], dataList[5], dataList[6]))
+            self.add_EntryFilled(dataList[0],dataList[1],dataList[2], dataList[3], dataList[4], dataList[5], dataList[6])
             #Make entry with values from line list
         
 
-        for i in self.storage: #To check that everything was read in correctly
-            i.print()
+        self.print_Database()
     
    ##TODO: FILTER ENTRY FUNCTION
 
