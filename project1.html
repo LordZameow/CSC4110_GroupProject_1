@@ -1,77 +1,123 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
-    <title>BEAR Software Group</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BEAR Software Project 1</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-    <!-- Convert this to an external style sheet -->
-    <style>
-        body{
-            color:white
-        }
-        #hero {
-            min-height: 100vh;
-            background: #141E30;
-            /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #243B55, #141E30);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #243B55, #141E30);
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        }
-    </style>
+    <link rel = "stylesheet" href = "StyleSheet.css">
 </head>
 
+<header>
+    <h1>B.E.A.R</h1>
+
+    <a href = "index.html" class = "button">Home</a>
+    &ensp;
+    <a href = "project1.html" class = "button">Project 1</a>
+    &ensp;
+    <a href = "project2.html" class = "button">Project 2</a>
+    &ensp;
+    <a href = "project3.html" class = "button">Project 3</a>
+    &ensp;
+    <a href = "project4.html" class = "button">Project 4</a>
+</header>
+
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">B.E.A.R.</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Project 1</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
+ 
+
     <!-- ======= Hero Section ======= -->
     <main id="hero">
-        <div class="container col-xxl-8 px-4 py-5">
+        <div class = column1>  
+            <img src="data.png" loading="lazy">
+             </div>  
+        <div class = column>
+           <div class="container col-xxl-8 px-4 py-5">
+
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 
                     <h1>An intro to our first project</h1>
                   
             </div>
-            <div class="col-lg-6">
-                    
+
+            <div class="col-lg-6">  
                 <p class="lead">Data storage. Seems simple enough, right? At BEAR, we've seen our fair share 
                     of data storage applications that are slow, clunky, or just don't work. We wanted to help put an end to that
                     with
                 </p>
+                <p> Instructions:</p>
+                <p> Once clicking on the Start Program button a Terms and Conditions page will pop up. Upon agreeing to the terms and conditions the program will start. There will be a couple of options provided: Mass import, individual import, and view entries. The entries view will show what you have entered during your session. Once clicking on the mass import or the individual import there will be instructions telling you how to properly format the information for each field. This is to make sure that the proper information is stored. Upon clicking the enter information button, a message will show saying whether the information has been entered correctly or not.</p>
+                <button class = "button" id = "myBtn">Start Program</button>
+                <div class = "modal" id = "myModal">
+                    <div class = "modal-content">
+                    <span class = "close"> &times; </span>
+                   
+                        <h1>User Legal Agreement</h1>
+                        <p>
 
-               
-                    <img src="data.png"
-                        class="d-block mx-lg-auto img-fluid " alt="Bootstrap Themes" width="500" height="500"
-                        loading="lazy">
-                
+                            BEAR Software Group will not share any data provided by the client to any
+                            third party. User data will only be used for analysis and improvement of 
+                            BEAR Software Group's products.
+                            
+                            BEAR Software Group does not permit the sale or reproduction of any 
+                            applications.
+                            
+                            BEAR Software group does not permit the use of any applications by anyone
+                            other than the registered user. 
+                            
+                            The user may not sell or distribute data without the express written consent 
+                            of BEAR Software Group
+                            
+                            Bear Software Group will not be held legally or otherwise responsible or
+                            liable for any data breaches, zero-day attacks, database worms, or any 
+                            other malicious attack that compromises the users data security.
+                            
+                            BEAR Software Group takes great care in insuring user's data security.
+                            BEAR Software Group performs regular vulnerability assessments, and requires
+                            the same from all key vendors and contibutors. 
+                            
+                            BEAR Software Group is constantly changing its approach to security as the
+                            security landscape is rapidly evolving. Every effort is made to stay on the
+                            cutting edge of data security. </p>
+
+                            <a href = "project1.html"><button class = "button"> I Disagree to the Terms and Conditions specified above </button></a>
+                            <p> </p>
+
+                            <a href = "database.py"><button class = "button">I Agree to the Terms and Condutions specified above</button></a>
+                    </div>
+                </div>
         </div>
+                  
+               </div> 
+
+                </div>
     </main>
+
+
     <!-- Bootstrap JS -->
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function(){
+            modal.style.display = "block";
+        }
+        span.onclick = function(){
+            modal.style.display = "none";
+        }
+        window.onclick = function(event){
+            if(event.target == modal){
+                modal.style.display = "none";
+            }
+        }
+    
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>

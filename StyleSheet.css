@@ -1,0 +1,126 @@
+a
+{color: black}
+
+button
+{color: black}
+
+body
+{
+color:black;
+font-family : monospace
+}
+.column1 img[src*="data.png"]
+{
+    box-sizing: border-box;
+    text-align:center;
+    width:33%;
+    float:right;
+    margin:6em 5em 4em 4em;
+}
+ 
+  
+
+
+
+.columnm
+ {
+  
+    box-sizing:border-box;
+    float:left;
+     text-align:center;
+     width:33%;
+  
+     
+    
+  }
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(127, 185, 145); /* Fallback color */
+  background-color: rgba(78, 119, 91, 0.4); /* Black w/ opacity */
+}
+
+.modal-content{
+  background-color: rgb(127, 185, 145);
+  margin: 15% auto; /* 15% from the top and centered */
+  text-align:left;
+  border: 2px solid rgb(93, 150, 111);
+  width: 33%; /* Could be more or less, depending on screen size */
+}
+.modal-content h1
+{
+  text-align: center;
+}
+
+.modal-content button
+{
+  text-align: center;
+  margin:auto;
+  display:flex;
+}
+.close {
+  color: rgb(0, 0, 0);
+  
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(235, 8, 8);
+  text-decoration: none;
+  cursor: pointer;
+}
+#hero 
+{  
+    min-height: 100vh;
+    background: rgb(28, 70, 17);
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgb(28, 70, 17), rgb(28,70,17));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45a75d, rgb(28, 70,17));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header
+{
+ margin-top: 0;
+ padding: 1em 1em 2em 1em;
+ text-align:center;
+ font-size:24px;
+ opacity: 100%;
+ background-image: url(birchbark2.jpg);
+}
+
+/*Styles for button for Main Navigation System*/
+.button 
+{
+ border: 2px solid rgb(0,0,0);
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ font-size:16px;
+ display: inline-block;
+ margin: 4px 2px;
+ cursor: pointer;
+ background-color: rgb(0,0,0);
+ 
+}
+
+a:hover
+{color:rgb(112, 175, 96)}
+               
+h1
+{
+ font-family: monospace;
+ font-size: 220%;
+ color: black;
+}
+
