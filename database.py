@@ -162,20 +162,100 @@ class Database: #This is the applications main class. Everything is contained he
 
 #tkinter main loop
 def tkmain():
+    #object for class database
+    dataObj = Database()
+        
     #create tkinter window
     root = Tk()
 
     #open window dimention
     root.geometry('350x500')
+        
+    #funtion for data entry window
+    def dataEntryWindow():
+        dataEntry = Toplevel(root)
+        dataEntry.title("Add Data")
+        dataEntry.geometry("500x500")
+        canvas = tk.Canvas(dataEntry, width = 500, height = 500)
+        canvas.pack()
 
+        #create entry boxes
+        name = tk.Entry(dataEntry)
+        position = tk.Entry(dataEntry)
+        ssn = tk.Entry(dataEntry)
+        address = tk.Entry(dataEntry)
+        email = tk.Entry(dataEntry)
+        phone = tk.Entry(dataEntry)
+        skill = tk.Entry(dataEntry)
+        canvas.create_window(250,100, window=name)
+        canvas.create_window(250,150, window=position)
+        canvas.create_window(250,200, window=ssn)
+        canvas.create_window(250,250, window=address)
+        canvas.create_window(250,300, window=email)
+        canvas.create_window(250,350, window=phone)
+        canvas.create_window(250,400, window=skill)
+
+        #create labels
+        labelName = tk.Label(dataEntry, text="Name")
+        canvas.create_window(150,100, window=labelName)
+        labelPosition = tk.Label(dataEntry, text="Position")
+        canvas.create_window(150,150, window=labelPosition)
+        labelSSN = tk.Label(dataEntry, text="SSN")
+        canvas.create_window(150,200, window=labelSSN)
+        labelAddress = tk.Label(dataEntry, text="Address")
+        canvas.create_window(150,250, window=labelAddress)
+        labelEmail = tk.Label(dataEntry, text="Email")
+        canvas.create_window(150,300, window=labelEmail)
+        labelPhone = tk.Label(dataEntry, text="Phone Number")
+        canvas.create_window(130,350, window=labelPhone)
+        labelSkill = tk.Label(dataEntry, text="Skill")
+        canvas.create_window(150,400, window=labelSkill)
+
+        name = name.get()
+        position = position.get()
+        ssn = ssn.get()
+        address = address.get()
+        email = email.get()
+        phone = phone.get()
+        skill = skill.get()
+
+        #submit button
+        submit = Button(dataEntry, text = 'Submit', command=lambda:dataObj.add_EntryFilled(name,position,ssn,address,email,phone,skill),bd = '5').place(x=250,y=450)
+        
+    #function to search data
+    def queryDataWindow():
+        queryData = Toplevel(root)
+        queryData.title("Query Data")
+        queryData.geometry("500x300")
+        canvas = tk.Canvas(queryData, width = 500, height = 300)
+        canvas.pack()
+
+        #create entry box with labels
+        key = tk.Entry(queryData)
+        canvas.create_window(250,100, window=key)
+        labelKey = tk.Label(queryData, text="Key")
+        canvas.create_window(150,100, window=labelKey)
+
+        value = tk.Entry(queryData)
+        canvas.create_window(250,150, window=value)
+        labelValue = tk.Label(queryData, text="Value")
+        canvas.create_window(150,150, window=labelValue)
+
+        strKey = str(key)
+        strValue = str(value)
+
+        #submit button
+        submit = Button(queryData, text = 'Submit', command=lambda:dataObj.search_Entry(strKey,strValue),bd = '5').place(x=250,y=200)
+        Button.pack()    
+        
     #add data button
-    adb = Button(root, text = 'Add Data', bd = '5').place(x=100,y=100)
+    adb = Button(root, text = 'Add Data',command=dataEntryWindow, bd = '5').place(x=100,y=100)
 
     #add query data button
-    qdb = Button(root, text = 'Query Data', bd = '5').place(x=100,y=200)
+    qdb = Button(root, text = 'Query Data',command=queryDataWindow, bd = '5').place(x=100,y=200)
 
     #add import data button
-    ipb = Button(root, text = 'Import Data', bd = '5').place(x=100,y=150)
+    ipb = Button(root, text = 'Import Data',command=dataObj.import_Txt, bd = '5').place(x=100,y=150)
 
     #add reverse data button
     rdb = Button(root, text = 'Reverse Data', bd = '5').place(x=100,y=250)
@@ -187,10 +267,10 @@ def tkmain():
     tk.mainloop()
 
 def main():
-    base = Database()
-    base.import_Txt()
+    #base = Database()
+    #base.import_Txt()
+    #base.search_Entry("Skill","Torture")
     tkmain()
-    base.search_Entry("Skill","Torture")
 
 
 
