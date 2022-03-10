@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 import pickle #Loads database into a file
 import re
+import os
 
 class Entry:
         def __init__(self):  #Default constructor
@@ -19,7 +20,7 @@ class Entry:
 
         def __init__(self, name, position, SSN, Address, email, phone, skill): #Parameterized Constructor
 
-            #call filter entry function here?
+           
 
             self.entryInfo = {
                 "Name":"Unknown",
@@ -55,7 +56,13 @@ class Database: #This is the applications main class. Everything is contained he
     def __init__(self):
         self.storage = []
 
+    def pickling(self):
+        with open("database.pkl",'wb') as f:
+            pickle.dump(self.storage)
 
+    def unpickle(self):
+        with open("database.pkl",'wb') as f:
+            self.storage = pickle.load(f)
 
     def add_EntryFilled(self,name, position, SSN, Address, email, phone, skill):
         newEntry = Entry(name, position, SSN, Address, email, phone, skill)
@@ -123,7 +130,14 @@ class Database: #This is the applications main class. Everything is contained he
 
     def import_Txt(self):
 
-        data = open("employeeInfov2.txt",'r')
+        txtFile = str(input("Please enter the name of the file you want to import. \nMake sure it is in the same directory as the exe: "))
+        txtFile += ".txt"  #User specifies name of file
+        
+        if os.path.isfile(txtFile): #Make sure it exists
+            data = open(txtFile,'r')
+        else:
+            print("File does not exist.")
+            return
 
         for line in data:
             dataList = line.split(",")
@@ -136,8 +150,6 @@ class Database: #This is the applications main class. Everything is contained he
 
 
         self.print_Database()
-
-   ##TODO: FILTER ENTRY FUNCTION
 
 
     def print_Database(self):
