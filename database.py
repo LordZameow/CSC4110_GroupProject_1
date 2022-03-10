@@ -155,6 +155,9 @@ class Database: #This is the applications main class. Everything is contained he
     def print_Database(self):
         for x in self.storage:
             x.print()
+        
+    def reverse_Data(self):
+        self.storage.reverse()
 
 
 #tkinter main loop
