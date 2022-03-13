@@ -192,6 +192,8 @@ def tkmain():
         dataEntry = Toplevel(root)
         dataEntry.title("Add Data")
         dataEntry.geometry("600x500")
+        dataEntry.maxsize(894, 670)
+        dataEntry.minsize(350,500)
         dataEntry.iconbitmap("bearicon.ico")
 
         #photo background
@@ -288,6 +290,8 @@ def tkmain():
         queryData = Toplevel(root)
         queryData.title("Query Data")
         queryData.geometry("500x300")
+        queryData.maxsize(894, 670)
+        queryData.minsize(350,500)
         canvas = Canvas(queryData, width = 500, height = 300)
         canvas.pack(fill = "both", expand = True)
         queryData.iconbitmap("bearicon.ico")
@@ -336,6 +340,8 @@ def tkmain():
         importData = Toplevel(root)
         importData.title("Import Data")
         importData.geometry("500x300")
+        importData.maxsize(894, 670)
+        importData.minsize(350,500)
         canvas = Canvas(importData, width = 500, height = 300)
         canvas.pack(fill = "both", expand = True)
         importData.iconbitmap("bearicon.ico")
