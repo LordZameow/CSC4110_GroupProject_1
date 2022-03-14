@@ -68,35 +68,42 @@ class Database: #This is the applications main class. Everything is contained he
         newEntry = Entry(name, position, SSN, Address, email, phone, skill)
 
         if self.filter_Entry(newEntry) == True:
-                self.storage.append(newEntry)
-                print("Entry added.")
-                newEntry.print()
+            self.storage.append(newEntry)
+            print("Entry added.")
+            newEntry.print()
         else:
-                print("Entry contains unacceptable character, not added.")
+            print("Entry contains unacceptable character, not added.")
 
     def filter_Entry(self, entry): #function to check that the database entry received from the tkinter UI is valid before pickling
-        p = re.compile('[^a-zA-Z]+ [a-zA-Z]+')  #regex to check that name only consists of one space and alphabetical characters
+        p = re.compile('[^a-zA-Z ]+')  #regex to check that name only consists of one space and alphabetical characters
         m = p.search(entry.entryInfo['Name'])
         if m:
-                print("invalid name entered")
-                return False
+            print("invalid name entered")
+            return False
 
         p = re.compile('[^a-zA-Z. /-]+') #regex to check position for alphabetical characters and a couple of other possible characters
         m = p.search(entry.entryInfo['Position'])
         if m:
-                print("invalid position entered")
-                return False
+            print("invalid position entered")
+            return False
 
-        p = re.compile('\d\d\d-\d\d-\d\d\d\d[^.]')  #regex to check for SSN match
+        p = re.compile('\d\d\d-\d\d-\d\d\d\d')  #regex to check for SSN match
         m = p.match(entry.entryInfo['SSN'])
         if not m:
-                print("Invalid SSN entered")
-                return False
-        p = re.compile('[0-9]{1,6} \w+ \w*[^.]') #regex to check address format
+            print("Invalid SSN entered")
+            return False
+        if len(entry.entryInfo['SSN']) != 11:
+            print("Invalid SSN entered.")
+            return False
+
+        p = re.compile('[0-9]{1,6} [a-zA-Z0-9\. ]+ \d{5}') #regex to check address format
         m = p.match(entry.entryInfo['Address'])
         if not m:
-                print("Invalid address entered")
-                return False
+            print("Invalid address entered")
+            return False
+        if m.span(0)[1] != len(entry.entryInfo['Address']):
+            print("Invalid address entered.")
+            return False
 
         #email address regex
         #long regex. could look at how to split this off, but did not want to mess with it for now
@@ -104,20 +111,23 @@ class Database: #This is the applications main class. Everything is contained he
         p = re.compile(r"([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\[[\t -Z^-~]*])")
         m = p.match(entry.entryInfo['Email'])
         if not m:
-                print("invalid email address entered")
-                return False
+            print("invalid email address entered")
+            return False
 
-        p = re.compile('\d\d\d-\d\d\d-\d\d\d\d[^.]') #regex for phone number validation
+        p = re.compile('[\(]?\d\d\d(\\)|-) ?\d\d\d-\d\d\d\d') #regex for phone number validation
         m = p.match(entry.entryInfo['Phone'])
         if not m:
-                print("invalid phone number entered")
-                return False
+            print("invalid phone number entered")
+            return False
+        if len(entry.entryInfo['Phone']) > 14:
+            print("Invalid phone entered")
+            return False
 
         p = re.compile('[^a-zA-Z ]+') #regex for skill. makes sure only alphabetical characters and spaces allowed
         m = p.search(entry.entryInfo['Skill'])
         if m:
-                print("invalid skill entered")
-                return False
+            print("invalid skill entered")
+            return False
         return True  #if all cases pass
 
     def search_Entry(self,key,value): #This will be the tag to search by. #Selected using buttons? #Passed in as string.
@@ -175,13 +185,13 @@ def tkmain():
     root.maxsize(894, 670)
     root.minsize(350,500)
     root.title("BEAR Software Group")
-    root.iconbitmap("bearicon.ico")
+    #root.iconbitmap("bearicon.ico")
 
     #image background
-    bg = PhotoImage(file="background.png")
-    canvasRoot = Canvas(root, width = 500, heigh = 500)
-    canvasRoot.pack(fill = "both", expand = True)
-    canvasRoot.create_image(0,0, image = bg, anchor = "nw")
+    #bg = PhotoImage(file="background.png")
+    #canvasRoot = Canvas(root, width = 500, heigh = 500)
+    #canvasRoot.pack(fill = "both", expand = True)
+    #canvasRoot.create_image(0,0, image = bg, anchor = "nw")
     
 
         
@@ -194,12 +204,12 @@ def tkmain():
         dataEntry.geometry("600x500")
         dataEntry.maxsize(894, 670)
         dataEntry.minsize(350,500)
-        dataEntry.iconbitmap("bearicon.ico")
+        #dataEntry.iconbitmap("bearicon.ico")
 
         #photo background
         canvas = tk.Canvas(dataEntry, width = 600, height = 500)
         canvas.pack(fill = "both", expand = True)
-        canvas.create_image(0,0, image = bg, anchor = "nw")
+        #canvas.create_image(0,0, image = bg, anchor = "nw")
 
         nameValue = tk.StringVar()
         posValue = tk.StringVar()
@@ -344,10 +354,10 @@ def tkmain():
         importData.minsize(350,500)
         canvas = Canvas(importData, width = 500, height = 300)
         canvas.pack(fill = "both", expand = True)
-        importData.iconbitmap("bearicon.ico")
+        #importData.iconbitmap("bearicon.ico")
 
         #photo background
-        canvas.create_image(0,0, image = bg, anchor = "nw")
+        #canvas.create_image(0,0, image = bg, anchor = "nw")
 
         file = tk.Entry(importData, textvariable = fileValue)
         canvas.create_window(250,100, window=file)
