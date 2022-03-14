@@ -67,32 +67,32 @@ class Database: #This is the applications main class. Everything is contained he
     def add_EntryFilled(self,name, position, SSN, Address, email, phone, skill):
         newEntry = Entry(name, position, SSN, Address, email, phone, skill)
 
-        #if self.filter_Entry(newEntry) == True:
-        self.storage.append(newEntry)
-        print("Entry added.")
-        newEntry.print()
-       # else:
-        #    print("Entry contains unacceptable character, not added.")
+        if self.filter_Entry(newEntry) == True:
+                self.storage.append(newEntry)
+                print("Entry added.")
+                newEntry.print()
+        else:
+                print("Entry contains unacceptable character, not added.")
 
     def filter_Entry(self, entry): #function to check that the database entry received from the tkinter UI is valid before pickling
-        p = re.compile('[a-zA-Z]+ [a-zA-Z]+')  #regex to check that name only consists of one space and alphabetical characters
-        m = p.match(entry.entryInfo['Name'])
-        if not m:
+        p = re.compile('[^a-zA-Z]+ [a-zA-Z]+')  #regex to check that name only consists of one space and alphabetical characters
+        m = p.search(entry.entryInfo['Name'])
+        if m:
                 print("invalid name entered")
                 return False
 
-        p = re.compile('[a-zA-Z. /-]+') #regex to check position for alphabetical characters and a couple of other possible characters
-        m = p.match(entry.entryInfo['Position'])
-        if not m:
+        p = re.compile('[^a-zA-Z. /-]+') #regex to check position for alphabetical characters and a couple of other possible characters
+        m = p.search(entry.entryInfo['Position'])
+        if m:
                 print("invalid position entered")
                 return False
 
-        p = re.compile('\d\d\d-\d\d-\d\d\d\d')  #regex to check for SSN match
+        p = re.compile('\d\d\d-\d\d-\d\d\d\d[^.]')  #regex to check for SSN match
         m = p.match(entry.entryInfo['SSN'])
         if not m:
                 print("Invalid SSN entered")
                 return False
-        p = re.compile('[0-9]{1,6} \w+ \w*') #regex to check address format
+        p = re.compile('[0-9]{1,6} \w+ \w*[^.]') #regex to check address format
         m = p.match(entry.entryInfo['Address'])
         if not m:
                 print("Invalid address entered")
@@ -107,15 +107,15 @@ class Database: #This is the applications main class. Everything is contained he
                 print("invalid email address entered")
                 return False
 
-        p = re.compile('\d\d\d-\d\d\d-\d\d\d\d') #regex for phone number validation
+        p = re.compile('\d\d\d-\d\d\d-\d\d\d\d[^.]') #regex for phone number validation
         m = p.match(entry.entryInfo['Phone'])
         if not m:
                 print("invalid phone number entered")
                 return False
 
-        p = re.compile('[a-zA-Z ]+') #regex for skill. makes sure only alphabetical characters and spaces allowed
-        m = p.match(entry.entryInfo['Skill'])
-        if not m:
+        p = re.compile('[^a-zA-Z ]+') #regex for skill. makes sure only alphabetical characters and spaces allowed
+        m = p.search(entry.entryInfo['Skill'])
+        if m:
                 print("invalid skill entered")
                 return False
         return True  #if all cases pass
